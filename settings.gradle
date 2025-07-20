@@ -16,6 +16,11 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+
+//        Adding JSC
+        maven {
+            url = uri("$rootDir/app/libs/jsc-android/dist")
+        }
     }
 }
 

@@ -8,6 +8,11 @@ android {
     namespace 'com.example.demornlibapp'
     compileSdk 36
 
+    packagingOptions {
+        pickFirst '**/libjsc.so'
+        pickFirst '**/libc++_shared.so'
+    }
+
     defaultConfig {
         applicationId "com.example.demornlibapp"
         minSdk 24
@@ -16,6 +21,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -54,6 +60,7 @@ dependencies {
     debugImplementation libs.androidx.ui.tooling
     debugImplementation libs.androidx.ui.test.manifest
     implementation files("libs/library-debug.aar")
+    implementation fileTree(dir: 'libs', include: ['*.aar'])
     implementation('com.facebook.react:react-android:0.76.9')
     implementation "org.webkit:android-jsc:+"
 }
