@@ -1,18 +1,18 @@
 package com.example.demornlibapp
 
 import android.app.Application
-import com.facebook.react.BuildConfig
 import com.facebook.react.ReactApplication
 import com.facebook.react.ReactNativeHost
 import com.facebook.react.ReactPackage
 import com.facebook.react.shell.MainReactPackage
 import com.facebook.soloader.SoLoader
+import com.facebook.react.soloader.OpenSourceMergedSoMapping
 
 class RNApplication : Application(), ReactApplication {
 
     // Define the ReactNativeHost (this manages the shared ReactInstanceManager)
     private val mReactNativeHost = object : ReactNativeHost(this) {
-        override fun getUseDeveloperSupport(): Boolean = BuildConfig.DEBUG
+        override fun getUseDeveloperSupport(): Boolean = false
 
         override fun getPackages(): List<ReactPackage> {
             // Add MainReactPackage and any custom packages from your library
@@ -25,7 +25,7 @@ class RNApplication : Application(), ReactApplication {
             return null
         }
 
-        override fun getBundleAssetName(): String? {
+        override fun getBundleAssetName(): String {
             return "index.android.bundle"  // Matches your original config
         }
 
@@ -38,6 +38,6 @@ class RNApplication : Application(), ReactApplication {
     override fun onCreate() {
         super.onCreate()
         // Initialize SoLoader here (once per app) to load native libraries like libhermes.so
-        SoLoader.init(this, /* native exopackage */ false)
+        SoLoader.init(this, /* native exopackage */ OpenSourceMergedSoMapping)
     }
 }

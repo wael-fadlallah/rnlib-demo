@@ -9,8 +9,9 @@ android {
     compileSdk 36
 
     packagingOptions {
-        pickFirst '**/libjsc.so'
-        pickFirst '**/libc++_shared.so'
+        pickFirst 'lib/**/libjscexecutor.so'  // Ensures it's included
+        pickFirst 'lib/**/libjsc.so'  // For the core JSC lib from your dist
+
     }
 
     defaultConfig {
@@ -59,8 +60,9 @@ dependencies {
     androidTestImplementation libs.androidx.ui.test.junit4
     debugImplementation libs.androidx.ui.tooling
     debugImplementation libs.androidx.ui.test.manifest
-    implementation files("libs/library-debug.aar")
+//    implementation files("libs/library-debug.aar")
     implementation fileTree(dir: 'libs', include: ['*.aar'])
     implementation('com.facebook.react:react-android:0.76.9')
     implementation "org.webkit:android-jsc:+"
+
 }
